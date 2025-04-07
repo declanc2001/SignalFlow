@@ -2,5 +2,5 @@ git init
 git add .
 git commit -m "Initial Flask API commit"
 git branch -M main
-git remote add origin https://github.com/your-username/eth-flask-api.git
+git remote add origin https://github.com/declanc2001/SignalFlow
 git push -u origin main
