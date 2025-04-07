@@ -5,7 +5,9 @@ import os
 app = Flask(__name__)
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
-@app.route("/api/transactions")
+@app.route("/")
+def home():
+    return "Hello, World!"
 def get_transactions():
     try:
         conn = psycopg2.connect(DATABASE_URL)
@@ -31,5 +33,6 @@ def get_transactions():
         return jsonify({"error": str(e)})
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # default to 5000 if not provided
+    # Set the correct port for Render (or fallback to 5000)
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
