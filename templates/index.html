@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypto Transactions</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px 12px; border: 1px solid #ccc; }
+        th { background: #eee; }
+    </style>
+</head>
+<body>
+    <h1>Recent Large Transactions</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Tx Hash</th>
+                <th>From</th>
+                <th>To</th>
+                <th>USD Value</th>
+                <th>Timestamp</th>
+                <th>Block</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tx in transactions %}
+            <tr>
+                <td>{{ tx.tx_hash }}</td>
+                <td>{{ tx.from_address }}</td>
+                <td>{{ tx.to_address }}</td>
+                <td>${{ "%.2f"|format(tx.value_usd) }}</td>
+                <td>{{ tx.timestamp }}</td>
+                <td>{{ tx.block_number }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
