@@ -21,7 +21,7 @@ def home():
                 "from_address": row[1],
                 "to_address": row[2],
                 "value_usd": row[3],
-                "timestamp": row[4].isoformat(),
+                "timestamp": str(row[4]),
                 "block_number": row[5]
             })
 
