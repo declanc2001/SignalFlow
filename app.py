@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+[⚠️ Suspicious Content] from flask import Flask, jsonify, render_template
 import psycopg2
 import os
 
@@ -7,8 +7,6 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 
 @app.route("/")
 def home():
-    return "Hello, World!"
-def get_transactions():
     try:
         conn = psycopg2.connect(DATABASE_URL)
         cursor = conn.cursor()
@@ -16,9 +14,9 @@ def get_transactions():
         rows = cursor.fetchall()
         conn.close()
 
-        result = []
+        transactions = []
         for row in rows:
-            result.append({
+            transactions.append({
                 "tx_hash": row[0],
                 "from_address": row[1],
                 "to_address": row[2],
@@ -27,12 +25,11 @@ def get_transactions():
                 "block_number": row[5]
             })
 
-        return jsonify(result)
+        return render_template("index.html", transactions=transactions)
 
     except Exception as e:
-        return jsonify({"error": str(e)})
+        return f"<p>Error: {e}</p>"
 
 if __name__ == "__main__":
-    # Set the correct port for Render (or fallback to 5000)
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
