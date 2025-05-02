@@ -20,7 +20,7 @@ def index():
                 "tx_hash": row[0],
                 "from_address": row[1],
                 "to_address": row[2],
-                "value_usd": float(row[3]),
+                "value_usd": row[3],
                 "timestamp": str(row[4]),
                 "block_number": row[5]
             })
