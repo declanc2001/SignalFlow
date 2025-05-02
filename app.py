@@ -14,20 +14,21 @@ def index():
         rows = cursor.fetchall()
         conn.close()
 
-        transactions = []
-        for row in rows:
-            transactions.append({
-                "tx_hash": row[0],
-                "from_address": row[1],
-                "to_address": row[2],
-                "value_usd": row[3],
-                "timestamp": str(row[4]),
-                "block_number": row[5]
-            })
-
-        return render_template("index.html", transactions=transactions)
-
+     transactions = []
+for row in rows:
+    try:
+        value_usd = float(row[3]) if isinstance(row[3], (int, float)) or row[3].replace('.', '', 1).isdigit() else 0.0
+        transactions.append({
+            "tx_hash": row[0],
+            "from_address": row[1],
+            "to_address": row[2],
+            "value_usd": value_usd,
+            "timestamp": str(row[4]),
+            "block_number": row[5]
+        })
     except Exception as e:
+        print(f"⚠️ Skipping invalid row: {e}")
+        continue
         return f"Error: {e}"
 
 if __name__ == "__main__":
