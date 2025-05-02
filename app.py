@@ -3,7 +3,7 @@ import psycopg2
 import os
 
 app = Flask(__name__)
-DATABASE_URL = os.environ.get("DATABASE_URL")
+DATABASE_URL = os.environ.get("postgresql://neondb_owner:npg_18oSVWrdELAa@ep-raspy-feather-abk1bamg-pooler.eu-west-2.aws.neon.tech/neondb?sslmode=require")
 
 @app.route("/")
 def home():
