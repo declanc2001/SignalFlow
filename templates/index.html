@@ -40,8 +40,14 @@
       {{ tx.tx_hash[:8] }}...
       <button class="btn btn-sm btn-outline-secondary copy-btn" data-copy="{{ tx.tx_hash }}">Copy</button>
     </td>
-            <td>{{ tx.from_address[:10] }}...</td>
-            <td>{{ tx.to_address[:10] }}...</td>
+             <td>
+      {{ tx.from_address[:10] }}...
+      <button class="btn btn-sm btn-outline-secondary copy-btn" data-copy="{{ tx.from_address }}">Copy</button>
+    </td>
+    <td>
+      {{ tx.to_address[:10] }}...
+      <button class="btn btn-sm btn-outline-secondary copy-btn" data-copy="{{ tx.to_address }}">Copy</button>
+    </td>
             <td>${{ "%.2f"|format(tx.value_usd) }}</td>
             <td>{{ tx.timestamp }}</td>
             <td>{{ tx.block_number }}</td>
